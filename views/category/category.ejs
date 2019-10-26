@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Newbiee</title>
+
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet"> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-home.css" rel="stylesheet">
+
+
+   <style> 
+
+           <% members.forEach((member, index) => { %>
+            #float-<%=index%> { 
+                display: none;
+                color:green; 
+
+            } 
+            <% }) %>
+              
+        </style> 
+
+        <script> 
+        
+            function mouseover() { 
+                <% members.forEach((member, index) => { %>
+                document.getElementById("float-<%=index%>").style.display = "block"; 
+                <% }) %>
+            } 
+              
+            function mouseout() { 
+              <% members.forEach((member, index) => { %>
+                document.getElementById("float-<%=index%>").style.display = "none"; 
+                <% }) %>
+            } 
+        </script> 
+
+</head>
+
+<body style="background-color:#f6f5f3">
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+   
+      <a class="navbar-brand" href="#"><font color="#7dce94"  size="7px" style="font-family:'Kaushan Script', cursive">newbiee</font></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/index" style="font-family:'Kaushan Script', cursive"><font color="#7dce94"  size="5px">Home</font>
+              <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/addgroup/<%= id %>" style="font-family:'Kaushan Script', cursive"><font color="#7dce94"  size="5px">Create Group</a></font>
+          </li>
+            
+          <li class="nav-item">
+            <a class="nav-link" href="/" style="font-family:'Kaushan Script', cursive"><font color="#7dce94"  size="5px">Logout</a></font>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br><br><br>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h1 class="my-4" style="font-family:'Kaushan Script', cursive;"><font color="#7dce94"><b><u><% categories.forEach((category, index) => { %> <%= category.CategoryName %><% }) %></h1></b></u></font>
+
+    <div class="error" style="display: none; font-family:'Kaushan Script', cursive;"><font size="6px">	&#128546;No Groups Found...</font> </div>        
+
+    <% groups.forEach((group, index) => { %>
+
+
+     
+        <!-- Blog Post -->
+        <div id="filter">
+        <div class="card mb-4">
+          <img class="card-img-top" src="/assets/img/<%= group.G_Image %>" alt="<%= group.GroupName  %>" height="300" width="200">
+          <div class="card-body">
+            <font color="#7dce94"><h2 class="card-title"><b><%= group.GroupName  %></b></h2></font>
+            <p class="card-text"><%= group.GroupDescription  %></p>
+            
+            <a href="/join_group/<%= group.G_Id %>" class="btn btn-outline-success">Join &rarr;</a>
+          </div>
+          <div class="card-footer text-muted" onmouseover="mouseover()"  onmouseout="mouseout()">
+           <a href="#" class="a_float" ><font color="#7dce94"><b> <%=group.TotalMembers %></b></font></a>  <b>Members</b>&nbsp;&nbsp;&nbsp;
+           <% users.forEach((user, index) => { %>
+           <% if (group.GroupAdmin === user.U_Id) { %>
+           <b>Created By-</b><a href="#" ><font color="#7dce94"><b><%= user.Username %></b></font></a></<b>
+           <% } %>
+            <% }) %>
+           <% members.forEach((member, index) => { %>
+           <% if (group.G_Id === member.G_Id) { %>
+            <div id="float-<%=index%>"> 
+            <table class="table">
+                <tbody>
+
+                  <tr>
+                    <td><img src="/assets/img/<%=member.ProfilePic%>" width="100" height="100" class="rounded-circle" alt="No Pic">&ensp;&ensp;<font size="3"><font size="5"><%=member.Username%></td></font>
+                  </tr>
+                 </tbody>
+              </table>
+      </div>
+      <% }else{ %>
+        <div id="float-<%=index%>"></div>
+      <%} %>
+      <% }) %>
+            
+          </div>
+        </div>
+         </div>
+
+        <% }) %>
+
+        
+
+        <!-- Pagination -->
+
+     
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+          <h5 class="card-header"><b><font color="#7dce94" >Search  for groups</h5></b></font>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Enter group name">
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header"><b><font color="#7dce94" >Other Categories</h5></b></font>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="list-unstyled mb-0">
+                <% categories1.forEach((category, index) => { %> 
+                  <li>
+                    <a href="/CategoryDisplay/<%= category.Cat_Id %>" style="font-family:'Kaushan Script', cursive;"><font color="#7dce94" size="5px" ><%= category.CategoryName %></font></a>
+                  </li>
+                <% }) %>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+ <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container" style="font-family:'Kaushan Script', cursive">
+      <p class="m-0 text-center text-white">Copyright &copy; Newbiee 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+  $(".form-control").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#filter ").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+   
+    
+  });
+  console.log($('#filter > :hidden').length);
+  if($('#filter:visible').length === 0){
+        $('.error').show();
+      }else{
+        $('.error').hide();
+      }
+});
+</script>
+
+</body>
+
+</html>

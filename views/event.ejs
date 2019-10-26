@@ -1,0 +1,286 @@
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Newbiee</title>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet"> 
+  
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    
+    
+    
+      <a class="navbar-brand" href="#" style="font-family:'Kaushan Script', cursive"><font color="#7dce94"  size="7px">newbiee</font></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+      <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item">
+        
+         <a class="nav-link" href="/index"  id="index" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="home"><font size="5px" color="#7dce94">Home</a></font>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+
+      <li class="nav-item">
+        
+         <a class="nav-link" href="/"  id="logout" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="bye!"><font size="5px" color="#7dce94">Logout</a></font>
+          </li>
+
+
+      
+    </ul>
+  </div> 
+</nav>
+<div style="background-color:#f6f5f3;font-family:'Kaushan Script', cursive">
+  <br><br><br><br><br><br>
+
+  <div class="container" style="font-family:'Kaushan Script', cursive">
+  
+  
+
+<% showevent.forEach((event,index) => { %>
+<div class="row" style="font-family:'Kaushan Script', cursive">
+            <div class="col-sm-8">
+                <h4><i class="fa fa-calendar" aria-hidden="true"></i> Wednesday,Oct 9,2019</h4>
+                <h1><%= event.EventName %></h1>
+                <div class="row">
+                <% user.forEach((user,index) => { %>
+                    <div class="col-md-auto">
+                        <img src="/assets/img/<%=user.ProfilePic%>" width="50" height="40" class="rounded-circle" alt="Cinque Terre"> 
+                    </div>
+                    <div class="col-md-auto">
+                    
+                        <h5>Hosted by-<%=user.Username%></h5>
+                    <% }) %>
+                    <% group.forEach((group,index) => { %>
+                        <h5>From - <%= group.GroupName%> Group</h5>
+                    <% }) %>
+                    </div>
+                </div> 
+            </div>
+            <% if(event.Available > 0){ %>
+
+            <% if(joined === false){ %>
+            
+
+            <div class="col-sm-4">
+                <font size="5">Are You Going?</font><font><font color="grey" size="4">&nbsp; <%= event.Available %> spots  left</font><br>
+                &ensp;&ensp;&ensp;<a type="button" href="/addeventuser/<%= event.E_Id%>"  class="btn btn-outline-success btn-block">&#10003;</a>
+            </div>
+
+            <%}else { %>
+
+            <div class="col-sm-4">
+                <font size="5"> Attending Event</font><font><font color="grey" size="4"><br></font>
+                &ensp;&ensp;&ensp;<a type="button" href="/removeeventuser/<%= event.E_Id%>"  class="btn btn-outline-success btn-block">Leave Event</a>
+            </div>
+
+
+            <% } %>
+
+            <% }else { %>
+
+            <div class="col-sm-4">
+                <font size="5" color="red"> Sorry, We are full</font><font><br>
+            </div>
+
+            <% } %>
+
+
+
+
+
+
+      
+</div> 
+</div>
+
+<br><br>
+<div style="background-color:#f6f5f3;font-family:'Kaushan Script', cursive">
+<div class="container">
+
+            <div class="row" >
+                        <div class="col-sm-8">
+                            <br>
+                            <img  src="/assets/img/<%= event.EventImage%>" class="rounded" alt="Responsive image" height="400" width="700">
+                            <br><br>
+                            <i><h1>Event Description</h1></i>
+                            <font size="5"><p><%= event.EventDescription %></p></font>
+                            <br><br>
+                  <% }) %>
+
+                          <% count.forEach((count,index) => { %>
+                            <h1><i style='font-size:35px' class='fas'>&#xf500;</i> Attendees (<%= count.count %>)</h1>
+                            <br>
+                          <% }) %>
+                            <div class="row text-center">
+
+                            <% participants.forEach((joined,index) => { %>
+
+                                    <div class="col-lg-3 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                        <img class="card-img-top" src="/assets/img/<%= joined.ProfilePic %>" class="rounded-circle player-img" alt="Sports" height="150" width="150">
+                                        <div class="card-body">
+                                            <font color="green"><h4 class="card-title"> <%= joined.Username %></h4></font>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                            <% }) %>
+
+                                    
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            </div>
+
+
+                            
+
+
+
+
+
+
+
+                        </div>
+
+                        <% showevent.forEach((event,index) => { %>
+
+                        <div class="col-sm-4">
+                            <br>
+                            <div  style="background-color:#FFF;border-top-style: dashed;border-right-style: solid;border-bottom-style: dashed;border-left-style: solid;border-color:#7dce94;"><br>
+                                    <h3><div id="date-<%=event.E_Id%>"><font size="4"></font></div></h3><br>
+                                    <h3><div id="time-<%=event.E_Id%>"><font size="3"></font></div></h3><br>
+                                    <h2>&ensp;&ensp;&ensp;<i class="fa">&#xf041;</i>&ensp;<font size="4"><%= event.Address%></h2></font><br>
+                            </div>
+    
+                        </div>
+            </div> 
+</div>
+</div>
+
+ <script>
+
+      function formatDate(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return day + ' ' + monthNames[monthIndex] + ' ' + year ;// ',  ' + hour + ':'+ minute ;
+                  }
+
+
+                  function formattime(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return  hour + ':'+ minute ;
+                  }
+
+            
+                  var pdate = "<%= event.DateTime %>";
+                  var ddate = new Date(pdate);
+                  var date = formatDate(ddate);
+                  document.getElementById('date-<%=event.E_Id%>').innerHTML = '&ensp;&ensp;&ensp;<i class="fa fa-calendar" aria-hidden="true"  style="font-size:36px"></i>&ensp;' +  date;
+
+                  var ddate = new Date(pdate);
+                  var date = formattime(ddate);
+
+                   document.getElementById('time-<%=event.E_Id%>').innerHTML = '&ensp;&ensp;&ensp;<i class="fa fa-clock" aria-hidden="true"  style="font-size:36px"></i>&ensp;'  + date;
+  
+  
+  
+  
+  
+  
+  </script>
+
+  <% }) %>
+
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Newbiee 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  
+
+  <script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 5
+    })
+  });
+
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+  
+</script>
+
+</body>
+
+</html>

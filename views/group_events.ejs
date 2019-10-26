@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Newbiee</title>
+
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet"> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-home.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      
+      <a class="navbar-brand" href="#" style="font-family:'Kaushan Script', cursive"><font color="#7dce94"  size="7px">newbiee</font></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/index"  id="notification" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="view notifications"><font size="5px" color="#7dce94">Home</a></font>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <% if (group_admin === true) { %>
+                        
+           <li class="nav-item">
+            <a class="nav-link" href="/create_event/<%=G_Id%>"  id="notification" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="view notifications"><font size="5px" color="#7dce94">Create Event</a></font>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           
+                        
+                    <% } %>
+
+
+
+         <li class="nav-item">
+            <a class="nav-link" href="/notification"  id="notification" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="view notifications"><font size="5px" color="#7dce94">Notifications</a></font>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    
+          
+
+       
+
+          <li class="nav-item">
+           <a class="nav-link" href="/"  id="logout" style="font-family:'Kaushan Script', cursive" data-toggle="tooltip" title="Bye!"><font size="5px" color="#7dce94">Logout</a></font>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+          
+        </ul>
+      </div>
+
+  </nav> 
+  <br><br><br>
+  <br><br>
+
+  <!-- Page Content -->
+  <div class="container">
+
+
+     <% groups.forEach((group, index) => {  %>
+        <h1>Events in <i><font color="green"><%= group.GroupName %></font></h1></i>
+       <% }) %>
+
+  <hr>
+
+
+    
+      <% events.forEach((event, index) => {  %>
+    <div class="row">
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+        <div class="card mb-3" style="max-width: 1000px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="/assets/img/<%= event.EventImage %>" class="card-img" alt="Not Available" height="250">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><font size="6px"><%= event.EventName%></font></h5>
+                <p class="card-text"><%= event.EventDescription%></p>
+                <a type="button" href="/event/<%=event.E_Id%>" class="btn btn-outline-success">See More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="col-md-4">
+
+<div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <font size="5px"><li class="list-group-item" id="date-<%=event.E_Id%>"></li></font>
+    <font size="5px"><li class="list-group-item" id="time-<%=event.E_Id%>"></li></font>
+    <font size="5px"><li class="list-group-item"><%=event.Available%> Places left</li></font>
+  </ul>
+
+  <script>
+
+      function formatDate(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return day + ' ' + monthNames[monthIndex] + ' ' + year ;// ',  ' + hour + ':'+ minute ;
+                  }
+
+
+                  function formattime(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return  hour + ':'+ minute ;
+                  }
+
+            
+                  var pdate = "<%= event.DateTime %>";
+                  var ddate = new Date(pdate);
+                  var date = formatDate(ddate);
+                  document.getElementById('date-<%=event.E_Id%>').innerHTML = '<i class="fa fa-calendar" aria-hidden="true"  style="font-size:36px"></i>&ensp;' +  date;
+
+                  var ddate = new Date(pdate);
+                  var date = formattime(ddate);
+
+                   document.getElementById('time-<%=event.E_Id%>').innerHTML = '<i class="fa fa-clock" aria-hidden="true"  style="font-size:36px"></i>&ensp;'  + date;
+  
+  
+  
+  
+  
+  
+  </script>
+</div>
+</div>
+
+
+  </div>
+
+        
+
+<% }) %>
+   
+
+    
+    <hr>
+    <h1>Recent <i><font color="green">Discussions..</font></h1></i>
+    <br>
+     <% forums_users.forEach((forum_user, index) => {  %>
+     <% if(forum_user.post_id === 0 ) {%>
+    <div class="p-3 mb-2 bg-light text-dark">
+     By <%=forum_user.Username%>&ensp;<span id="span-<%=forum_user.F_Id%>" style="float:right;"></span><br>
+    <%= forum_user.Text%>
+    </div>
+
+<script>
+
+      function formatDate(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return day + ' ' + monthNames[monthIndex] + ' ' + year + ',  ' + hour + ':'+ minute ;
+                  }
+
+            
+                  var pdate = "<%=forum_user.DateTime%>";
+                  var ddate = new Date(pdate);
+                  var date = formatDate(ddate);
+                  document.getElementById('span-<%=forum_user.F_Id%>').innerHTML = date;
+
+      
+      
+      </script>
+
+
+     <div class="row">
+      <div class="col-sm-4"><button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#reply-<%= forum_user.F_Id%>">View Replies</button>&ensp;&ensp;   <button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#replytext-<%= forum_user.F_Id%>">Reply</button></div>
+      <div class="col-sm-8">
+      <% forums_users.forEach((forum_reply, index) => { %>
+        <% if(forum_reply.post_id == forum_user.F_Id){%>
+      <div class="collapse p-3 mb-2 bg-light text-dark" id="reply-<%= forum_user.F_Id%>">
+     Replied by - <%=forum_reply.Username%>&ensp;<span id="span-<%=forum_reply.F_Id%>" style="float:right;"></span><br>
+     <%= forum_reply.Text%>
+    </div>
+
+    <script>
+
+      function formatDate(date) {
+                    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "Jun", "Jul",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+                  
+                    var day = date.getDate();
+                    var monthIndex = date.getMonth();
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                  
+                    return day + ' ' + monthNames[monthIndex] + ' ' + year + ',  ' + hour + ':'+ minute ;
+                  }
+
+            
+                  var pdate = "<%=forum_reply.DateTime%>";
+                  var ddate = new Date(pdate);
+                  var date = formatDate(ddate);
+                  document.getElementById('span-<%=forum_reply.F_Id%>').innerHTML = date;
+
+      
+      
+      </script>
+
+
+    <% } %>
+
+    <% }) %>
+
+
+
+    
+
+    <div class="collapse" id="replytext-<%=forum_user.F_Id%>">
+    <form class="form-signin" action="" method="post" enctype="multipart/form-data">
+    <input name="reply" type="text" class="form-control" placeholder="Enter Reply" required>
+    <input name="FId" type="text" class="form-control" style="display:none" value="<%=forum_user.F_Id%>">
+    
+    <button type="submit" class="btn btn-success">Post</button></form></div>
+    
+    
+    </div>
+</div> 
+    <br>
+
+    <% } %>
+
+    <% }) %>
+
+     <div class="form-group">
+     <form class="form-signin" action="" method="post" enctype="multipart/form-data">
+  <input class="form-control" rows="5" id="comment" placeholder="Write here" name="post" required>
+  </input><br>
+  
+  <button type="submit" class="btn btn-success">Post</button>
+  </form>
+</div> 
+
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

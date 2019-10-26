@@ -1,0 +1,25 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Username</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+
+                <% users.forEach((user, index) => { %>
+                        <tr>
+                            <td><%= user.Name %></td>
+                        </tr>
+                    <% }) %>
+                   
+                        
+            </table>
+         
+    </div>
+</div>
+</body>
+</html>
