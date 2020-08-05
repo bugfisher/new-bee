@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6-alpha.3",
+    "express-fileupload": "^1.1.9",
     "express-session": "^1.16.2",
     "install": "^0.13.0",
     "mapbox-gl": "^1.4.1",
